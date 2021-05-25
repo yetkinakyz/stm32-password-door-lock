@@ -28,4 +28,4 @@ The user has to press the pound (#) key to confirm the password he has entered. 
 
 For now, the system does not store the password defined by user permanently, thus it waits for the predefined password every time the system is restarted. The project will be updated as soon as the necessary adjustments will be made.
 
-This project is implemented as a prototype, so it does not have the equipment to control a lock. I am thinking of adding the necessary equipment later.
+This project is implemented as a prototype, so it does not have the equipment to control a lock. I am thinking of adding the necessary equipment for door lock later.
