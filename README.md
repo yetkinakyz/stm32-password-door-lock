@@ -1,14 +1,12 @@
 # STM32 Based Simple Password Door Lock System Prototype
 
-
-
 ## System Architecture
 
 Within the scope of the project realized on the STM32F303RE Nucleo-64 development board, 3x4 keypad module, a 2x16 LCD screen and 2 LEDs, one green and one red, are used.
 
 All required outputs are shown on the LCD screen. Password and selection entries are made on the keypad. On the other hand, LEDs provide status information. The green LED blinks when a favorable output is received, and the red LED blinks when an unfavorable output is received.
 
-When the system is started, it has a preset password and the door is locked. To unlock or to define a new password, the correct password must be entered in the password. After unlocking, the system offers two different operation choices: defining a new password or locking the door.
+When the system is started for the first time, the user is asked to define a password for once only. This password remains the same as long as it is not changed by the user. After the user has defined his password, the lock is unlocked and the user is expected to choose to change his password or lock the door.
 
 ## Connection
 
@@ -18,14 +16,12 @@ In order to avoid bouncing, using resistors (100KΩ for rows and 10KΩ for colum
 
 ## Software
 
-System operations are controlled by the value held by the variable named door_state. If the value of the variable is 0, the system is locked and a password must be entered. If the password is entered correctly, the value of the variable changes to 1. For this operation, the values ​​returned by the keypad_scanner function are compared with the password defined in turn. According to the comparison result, the green or red LED lights up for a while while the information message is printed on the LCD.
+First, it is checked whether the system is started for the first time or not, and if it is started for the first time, the user is asked to define a password. If the system is powered up for the first time, the lock is unlocked after password identification and the system enters an endless loop with the main system processes.
 
-In case of unlocking, two different options are offered to the user. The user can change the password by pressing the asterisk (*) key or lock the system again by pressing the pound (#) key. A password is required to lock the system.
+This password identification process, which is performed at the beginning, is only for once, and the password and lock status defined after the user has defined a password never changes unless the user changes it.
 
-The user has to press the pound (#) key to confirm the password he has entered. In addition, the user can clear or cancel the password screen with the asterisk (*) key.
+System operations are controlled by the values found in the first 5 bytes of the FLASH memory on page 127. The first 4 bytes of this section contain the password specified by the user, and the remaining 1 byte contains information on the lock status. The reason for this information to be found in FLASH memory is that when the system is restarted for any reason, it can work again without losing the state it was in.
 
 ## Note
-
-For now, the system does not store the password defined by user permanently, thus it waits for the predefined password every time the system is restarted. The project will be updated as soon as the necessary adjustments will be made.
 
 This project is implemented as a prototype, so it does not have the equipment to control a lock. I am thinking of adding the necessary equipment for door lock later.
