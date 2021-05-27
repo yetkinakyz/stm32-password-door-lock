@@ -130,18 +130,13 @@ int main(void)
 
   /* Starting Messages */
 
-  lcd_data(1, 1, " EEM418 ");
-  lcd_data(2, 1, " FINAL PROJECT ");
-
-  HAL_Delay(1000);
-
   lcd_data(1, 1, " PASSWORD  DOOR ");
   lcd_data(2, 1, " LOCK SYSTEM ");
 
   HAL_Delay(1000);
 
   lcd_data(1, 1, "  YETKIN AKYUZ  ");
-  lcd_data(2, 1, " BEYZANUR CELIK ");
+  lcd_data(2, 1, "yetkinakyuz.com ");
 
   HAL_Delay(1000);
 
